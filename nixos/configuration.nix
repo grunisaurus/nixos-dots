@@ -10,7 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./luks/luks.nix
+    #   ./luks/luks.nix
   ];
 
   # Bootloader.
@@ -132,7 +132,7 @@
     gradle
     thunderbird
     #currently the url is not available for fetching (403 FORBIDDEN)
-    visual-paradigm-ce
+    #visual-paradigm-ce
     htop
     librewolf
     dissent
