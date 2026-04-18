@@ -1,4 +1,2 @@
-#ignore luks 
-nixos/luks/*
 
 **/*.jpg
