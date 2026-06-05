@@ -5,7 +5,7 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
@@ -13,41 +13,42 @@
 
     # hyprland and its according packages
     hyprland = {
-	url = "git+https://github.com/hyprwm/Hyprland.git?submodules=1";
-	inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-   nvf = {
-	url = "github:notashelf/nvf";
-	inputs = {
-			nixpkgs.follows = "hyprland/nixpkgs";
-		};
-	};
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs = {
+        nixpkgs.follows = "hyprland/nixpkgs";
+      };
+    };
 
-   hyprlock = {
-	url = "github:hyprwm/hyprlock";
-	inputs = {
-		hyprlang.follows = "hyprland/hyprlang";
-		hyprutils.follows = "hyprland/hyprutils";
-		nixpkgs.follows = "hyprland/nixpkgs";
-		systems.follows = "hyprland/systems";
-	};
-   };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
 
-   hyprpaper = {
-	url = "github:hyprwm/hyprpaper";
-	inputs = {
-		hyprlang.follows = "hyprland/hyprlang";
-		hyprutils.follows = "hyprland/hyprutils";
-		nixpkgs.follows = "hyprland/nixpkgs";
-		systems.follows = "hyprland/systems";
-	};
-   };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs = {
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     home-manager,
     nvf,
     ...
@@ -55,6 +56,7 @@
     inherit (self) outputs;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    pkgs-unstable = nixpkgs.legacyPackages.${system};
   in {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -63,8 +65,8 @@
         specialArgs = {inherit inputs outputs system;};
         # > Our main nixos configuration file <
         modules = [
-                        ./nixos/configuration.nix
-                ];
+          ./nixos/configuration.nix
+        ];
       };
     };
 
@@ -76,18 +78,18 @@
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
         modules = [
-		./home-manager/home.nix
-		nvf.homeManagerModules.default
-	];
+          ./home-manager/home.nix
+          nvf.homeManagerModules.default
+        ];
       };
     };
 
     devShells = {
-    zig = pkgs.mkShell {
-          packages = with pkgs; [
-              zig
-            ];
-          };
-    };
+      zig = pkgs.mkShell {
+        packages = with pkgs; [
+          zig
+        ];
       };
+    };
+  };
 }

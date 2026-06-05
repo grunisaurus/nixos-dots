@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   spellfiles = builtins.path {
     name = "spellfiles";
     path = builtins.toString ./spell;
@@ -13,16 +10,16 @@ in {
       vim = {
         vimAlias = true;
         options = {
-            foldenable = false;
-            # indentation options
-            tabstop = 2;
-            softtabstop = 2;
-            expandtab = true;
-            smartindent = true;
-            shiftwidth = 2;
-            # window options
-            scrolloff = 10; # 10 lines will stay visible, top & bottom
-            sidescrolloff = 10; # 10 cols will stay visible while scrolling left/right
+          foldenable = false;
+          # indentation options
+          tabstop = 2;
+          softtabstop = 2;
+          expandtab = true;
+          smartindent = true;
+          shiftwidth = 2;
+          # window options
+          scrolloff = 10; # 10 lines will stay visible, top & bottom
+          sidescrolloff = 10; # 10 cols will stay visible while scrolling left/right
         };
 
         additionalRuntimePaths = [
@@ -42,7 +39,7 @@ in {
                 "eslint_d"
                 "prettier"
               ];
-              nix = [ "nix" ];
+              nix = ["nix"];
             };
           };
         };
@@ -98,15 +95,15 @@ in {
           zig.enable = true;
           go.enable = true;
           python.enable = true;
-          ts = {
-                enable = true;
-                extensions.ts-error-translator.enable = true;
+          typescript = {
+            enable = true;
+            extensions.ts-error-translator.enable = true;
           };
           css.enable = true;
           bash.enable = true;
           nix = {
             enable = true;
-            lsp.servers = [ "nixd" ];
+            lsp.servers = ["nixd"];
           };
           java.enable = true;
         };

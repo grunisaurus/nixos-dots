@@ -10,7 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #   ./luks/luks.nix
+    ./luks/luks.nix
   ];
 
   # Bootloader.
@@ -62,6 +62,7 @@
 
   hardware = {
     bluetooth.enable = true;
+    graphics.enable = true;
   };
 
   services.pipewire = {
@@ -121,10 +122,9 @@
     jetbrains.goland
     android-studio
     nushell
-    tipp10
     alsa-utils
     hyprsunset
-    zoom-us
+    #zoom-us
     # There are known security issues in this version of the ciscoPacketTracer because it is based on a fairly old version of chromium.
     #ciscoPacketTracer8
     unixtools.netstat
@@ -132,12 +132,11 @@
     gradle
     thunderbird
     #currently the url is not available for fetching (403 FORBIDDEN)
-    #visual-paradigm-ce
+    visual-paradigm-ce
     htop
     librewolf
-    dissent
     keepassxc
-    logseq
+    #logseq
     localsend
     blueman
   ];
@@ -177,7 +176,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "26.11"; # Did you read the comment?
 
   nix.gc = {
     automatic = true;

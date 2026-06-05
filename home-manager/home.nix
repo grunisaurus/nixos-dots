@@ -17,7 +17,7 @@
   home = {
     username = "grunisaurus";
     homeDirectory = "/home/grunisaurus";
-    stateVersion = "24.11";
+    stateVersion = "26.05";
     #file.".config/ghostty/config".force = true;
   };
 
