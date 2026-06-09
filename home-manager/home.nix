@@ -4,15 +4,10 @@
   ...
 }: {
   imports = [
-    ./terminal/nvf/nvf.nix
-    ./terminal/kitty/kitty.nix
-    ./terminal/tmux/tmux.nix
-    ./hypr/hyprland/hyprland.nix
-    ./hypr/hyprpaper/hyprpaper.nix
-    ./hypr/waybar/waybar.nix
-    ./hypr/hyprlock/hyprlock.nix
-    ./terminal/ghostty/ghostty.nix
-    ./launcher/fuzzel.nix
+    ./terminal
+    ./hypr
+    ./applications
+    ./utilities
   ];
   home = {
     username = "grunisaurus";

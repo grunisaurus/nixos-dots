@@ -1,18 +1,20 @@
-{input, pkgs, inputs, ...}:
-
-let
-	wallpaper = pkgs.fetchurl {
-		url = "https://images4.alphacoders.com/135/1354019.png";
-		hash = "sha256-FMKDZ4/X8B4wMtkxV0YBlZCICE5sYBZvAEAVdsaS5jc=";
-	};
-in
 {
-	programs.hyprlock = {
-		enable = true;
-		
-		package = inputs.hyprlock.packages.${pkgs.system}.default;
-		settings = {
-			general = {
+  input,
+  pkgs,
+  inputs,
+  ...
+}: let
+  wallpaper = pkgs.fetchurl {
+    url = "https://images4.alphacoders.com/135/1354019.png";
+    hash = "sha256-FMKDZ4/X8B4wMtkxV0YBlZCICE5sYBZvAEAVdsaS5jc=";
+  };
+in {
+  programs.hyprlock = {
+    enable = true;
+
+    package = inputs.hyprlock.packages.${pkgs.system}.default;
+    settings = {
+      general = {
         disable_loading_bar = true;
         grace = 10;
         hide_cursor = true;
@@ -22,7 +24,7 @@ in
       background = [
         {
           monitor = "";
-          path = "${ builtins.toString wallpaper }";
+          path = "${builtins.toString wallpaper}";
           color = "rgb(36, 39, 58)";
         }
       ];
@@ -51,12 +53,10 @@ in
           inner_color = "rgb(91, 96, 120)";
           outer_color = "rgb(24, 25, 38)";
           outline_thickness = 5;
-          placeholder_text = 
-              ''<span foreground="##cad3f5">Password...</span>'';
+          placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
           shadow_passes = 2;
         }
       ];
-		};
-	};
-
+    };
+  };
 }

@@ -1,0 +1,5 @@
+{...}: {
+  programs.macchina = {
+    enable = true;
+  };
+}

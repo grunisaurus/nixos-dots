@@ -9,11 +9,16 @@
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # hyprland and its according packages
     hyprland = {
       url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -48,7 +53,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-stable,
     home-manager,
     nvf,
     ...
@@ -56,7 +60,6 @@
     inherit (self) outputs;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    pkgs-unstable = nixpkgs.legacyPackages.${system};
   in {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'

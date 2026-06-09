@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   programs.ghostty = {
     enable = true;
     installVimSyntax = true;
@@ -10,5 +8,4 @@
       background-opacity = 0.8;
     };
   };
-
 }

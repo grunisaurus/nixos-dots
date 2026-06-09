@@ -1,10 +1,8 @@
 # Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
   inputs,
-  lib,
   ...
 }: {
   imports = [
@@ -89,15 +87,6 @@
     wget
     firefox
     dunst
-    (python3.withPackages (ps: [
-      #     ps.tensorflow
-      ps.matplotlib
-      ps.numpy
-      ps.pandas
-      ps.scikit-learn
-      ps.notebook
-      ps.pygame
-    ]))
     libnotify
     kitty
     ghostty
@@ -108,12 +97,9 @@
     unzip
     wineWow64Packages.waylandFull
     winetricks
-    go
     git
     fzf
     hyprshot
-    vscode
-    fastfetch
     discord
     libreoffice-qt
     texliveFull
@@ -131,14 +117,17 @@
     lsof
     gradle
     thunderbird
-    #currently the url is not available for fetching (403 FORBIDDEN)
     visual-paradigm-ce
     htop
     librewolf
     keepassxc
+    # The currently used electron package is flagged as insecure. an upgrade is not possible because the plugin system breaks
     #logseq
     localsend
     blueman
+
+    #zen browser flake
+    inputs.zen-browser.packages.${stdenv.hostPlatform.system}.default
   ];
 
   programs.java = {
